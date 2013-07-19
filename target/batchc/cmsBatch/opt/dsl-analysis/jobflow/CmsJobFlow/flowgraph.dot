@@ -1,0 +1,22 @@
+digraph {
+    "db89f286-e45c-4cfc-a656-913cc0e1e899" [shape=box, label="@Restructure\nrestructure"];
+    "2e3d72c7-885e-4839-86ee-3e1ac45a0619" [shape=box, label="@MasterBranch\nCmsOperator.branchWithJoin"];
+    "c4cf031a-fb14-42a5-be4a-875224378099" [shape=invhouse, label="modelB"];
+    "4264972a-0b65-4ad9-88ea-2aa5086ad237" [shape=invhouse, label="modelA"];
+    "3cb8eda4-dc0a-4881-81d4-77fe1eb0e176" [shape=box, label="@Project\nproject"];
+    "8aea8d1f-3b49-4ce5-ad79-2fc95af57b71" [shape=invhouse, label="joined"];
+    "b5320be7-035b-4bf8-acd5-5771084dfd41" [shape=box, label="@MasterJoin\nCmsOperator.joined"];
+    "e9fe9134-beab-4871-aec3-23ea8bdd45cf" [shape=point];
+    "40279626-8e2b-4a96-a806-60c13ae89944" [shape=box, label="@Restructure\nrestructure"];
+    "db89f286-e45c-4cfc-a656-913cc0e1e899" -> "8aea8d1f-3b49-4ce5-ad79-2fc95af57b71" [label="out>port"];
+    "2e3d72c7-885e-4839-86ee-3e1ac45a0619" -> "db89f286-e45c-4cfc-a656-913cc0e1e899" [label="bmissed>in"];
+    "2e3d72c7-885e-4839-86ee-3e1ac45a0619" -> "e9fe9134-beab-4871-aec3-23ea8bdd45cf" [label="other>in"];
+    "c4cf031a-fb14-42a5-be4a-875224378099" -> "2e3d72c7-885e-4839-86ee-3e1ac45a0619" [label="port>modelB"];
+    "c4cf031a-fb14-42a5-be4a-875224378099" -> "b5320be7-035b-4bf8-acd5-5771084dfd41" [label="port>modelB"];
+    "4264972a-0b65-4ad9-88ea-2aa5086ad237" -> "2e3d72c7-885e-4839-86ee-3e1ac45a0619" [label="port>modelA"];
+    "4264972a-0b65-4ad9-88ea-2aa5086ad237" -> "b5320be7-035b-4bf8-acd5-5771084dfd41" [label="port>modelA"];
+    "3cb8eda4-dc0a-4881-81d4-77fe1eb0e176" -> "8aea8d1f-3b49-4ce5-ad79-2fc95af57b71" [label="out>port"];
+    "b5320be7-035b-4bf8-acd5-5771084dfd41" -> "3cb8eda4-dc0a-4881-81d4-77fe1eb0e176" [label="joined>in"];
+    "b5320be7-035b-4bf8-acd5-5771084dfd41" -> "40279626-8e2b-4a96-a806-60c13ae89944" [label="missed>in"];
+    "40279626-8e2b-4a96-a806-60c13ae89944" -> "8aea8d1f-3b49-4ce5-ad79-2fc95af57b71" [label="out>port"];
+}

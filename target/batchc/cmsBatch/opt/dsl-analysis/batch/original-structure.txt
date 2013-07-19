@@ -1,0 +1,16 @@
+batch: cmsBatch
+flow: CmsJobFlow
+    input:
+        modelA (ironpeace.jobflow.io.ModelAFromCsv)
+        modelB (ironpeace.jobflow.io.ModelBFromCsv)
+    output:
+        joined (ironpeace.jobflow.io.JoinedModelToCsv)
+    flow: ironpeace.jobflow.CmsJobFlow
+        operator: ironpeace.operator.CmsOperator#branchWithJoin([class ironpeace.modelgen.dmdl.model.ModelB, class ironpeace.modelgen.dmdl.model.ModelA])[]
+        input: InputDescription{name=modelA, type=class ironpeace.modelgen.dmdl.model.ModelA}
+        output: OutputDescription{name=joined, type=class ironpeace.modelgen.dmdl.model.JoinedModel}
+        operator: com.asakusafw.vocabulary.flow.util.CoreOperatorFactory$Restructure#toString([])[]
+        operator: com.asakusafw.vocabulary.flow.util.CoreOperatorFactory$Project#toString([])[]
+        operator: ironpeace.operator.CmsOperator#joined([class ironpeace.modelgen.dmdl.model.ModelA, class ironpeace.modelgen.dmdl.model.ModelB])[]
+        input: InputDescription{name=modelB, type=class ironpeace.modelgen.dmdl.model.ModelB}
+        operator: com.asakusafw.vocabulary.flow.util.CoreOperatorFactory$Restructure#toString([])[]

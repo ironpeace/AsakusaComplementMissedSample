@@ -1,0 +1,79 @@
+-- 入力CSVファイル形式
+
+"modelA"
+@directio.csv(
+    has_header = TRUE,
+    datetime = "yyyy-MM-dd HH:mm:ss"
+)
+model_a = {
+
+    "keycode"
+    @directio.csv.field(name = "KEYCODE")
+    keycode : TEXT;
+
+    "FIELDA1"
+    @directio.csv.field(name = "FIELDA1")
+    field_a_1 : TEXT;
+
+    "FIELDA2"
+    @directio.csv.field(name = "FIELDA2")
+    field_a_2 : TEXT;
+};
+
+"modelB"
+@directio.csv(
+    has_header = TRUE,
+    datetime = "yyyy-MM-dd HH:mm:ss"
+)
+model_b = {
+
+    "keycode"
+    @directio.csv.field(name = "KEYCODE")
+    keycode : TEXT;
+
+    "FIELDB1"
+    @directio.csv.field(name = "FIELDB1")
+    field_b_1 : TEXT;
+
+    "FIELDB2"
+    @directio.csv.field(name = "FIELDB2")
+    field_b_2 : TEXT;
+};
+
+joined pre_joined_model = model_a -> {
+	keycode -> keycode;
+	field_a_1 -> field_a_1;
+	field_a_2 -> field_a_2;
+} % keycode + model_b -> {
+	keycode -> keycode;
+	field_b_1 -> field_b_1;
+	field_b_2 -> field_b_2;
+} % keycode;
+
+
+"joined_model"
+@directio.csv(
+    has_header = TRUE,
+    datetime = "yyyy-MM-dd HH:mm:ss"
+)
+joined_model = {
+    "keycode"
+    @directio.csv.field(name = "KEYCODE")
+    keycode : TEXT;
+
+    "FIELDA1"
+    @directio.csv.field(name = "FIELDA1")
+    field_a_1 : TEXT;
+
+    "FIELDA2"
+    @directio.csv.field(name = "FIELDA2")
+    field_a_2 : TEXT;
+
+    "FIELDB1"
+    @directio.csv.field(name = "FIELDB1")
+    field_b_1 : TEXT;
+
+    "FIELDB2"
+    @directio.csv.field(name = "FIELDB2")
+    field_b_2 : TEXT;
+};

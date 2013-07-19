@@ -1,0 +1,30 @@
+digraph {
+    "7d91f7a6-f23e-4b02-a029-615a27cdb6b1" [shape=invhouse, label="joined"];
+    subgraph "cluster_fc037e32-da47-44da-8313-628bdff6beda" {
+        label = "stage0001";
+        style = bold;
+        "0dd0bc12-6c2b-4ff1-8e3f-de14973cf4c9" [shape=point];
+        "db87b49d-6a48-45f5-be4e-30ee1b9d701a" [shape=point];
+        "ffd74046-6091-46d4-8355-f974bed8b82e" [shape=point];
+        "33bf97d4-81f0-43ee-89e4-d9f3fd61abc2" [shape=box, label="@MasterBranch\nCmsOperator.branchWithJoin"];
+        "7bcdbd9d-f06e-460b-92a6-4fa9ce2200ce" [shape=box, label="@Restructure\nrestructure"];
+        "a030b434-e396-4949-a751-5243d296a2d2" [shape=box, label="@Project\nproject"];
+        "cc567d43-5426-4c1b-9d80-5ac1c11f0ba7" [shape=box, label="@MasterJoin\nCmsOperator.joined"];
+        "5e72f9f8-6175-424f-8aa1-afd1d9a99077" [shape=box, label="@Restructure\nrestructure"];
+    }
+    "c05ac0f2-8786-4bbc-9048-6414552405c6" [shape=invhouse, label="modelB"];
+    "e5f3db75-fbd7-4fdc-b10d-5a1ba65e67e1" [shape=invhouse, label="modelA"];
+    "e5f3db75-fbd7-4fdc-b10d-5a1ba65e67e1" -> "0dd0bc12-6c2b-4ff1-8e3f-de14973cf4c9" [label="port>in"];
+    "c05ac0f2-8786-4bbc-9048-6414552405c6" -> "ffd74046-6091-46d4-8355-f974bed8b82e" [label="port>in"];
+    "e5f3db75-fbd7-4fdc-b10d-5a1ba65e67e1" -> "db87b49d-6a48-45f5-be4e-30ee1b9d701a" [label="port>in"];
+    "0dd0bc12-6c2b-4ff1-8e3f-de14973cf4c9" -> "33bf97d4-81f0-43ee-89e4-d9f3fd61abc2" [label="out>modelA"];
+    "db87b49d-6a48-45f5-be4e-30ee1b9d701a" -> "cc567d43-5426-4c1b-9d80-5ac1c11f0ba7" [label="out>modelA"];
+    "ffd74046-6091-46d4-8355-f974bed8b82e" -> "cc567d43-5426-4c1b-9d80-5ac1c11f0ba7" [label="out>modelB"];
+    "ffd74046-6091-46d4-8355-f974bed8b82e" -> "33bf97d4-81f0-43ee-89e4-d9f3fd61abc2" [label="out>modelB"];
+    "a030b434-e396-4949-a751-5243d296a2d2" -> "7d91f7a6-f23e-4b02-a029-615a27cdb6b1" [label="out>port"];
+    "7bcdbd9d-f06e-460b-92a6-4fa9ce2200ce" -> "7d91f7a6-f23e-4b02-a029-615a27cdb6b1" [label="out>port"];
+    "5e72f9f8-6175-424f-8aa1-afd1d9a99077" -> "7d91f7a6-f23e-4b02-a029-615a27cdb6b1" [label="out>port"];
+    "33bf97d4-81f0-43ee-89e4-d9f3fd61abc2" -> "7bcdbd9d-f06e-460b-92a6-4fa9ce2200ce" [label="bmissed>in"];
+    "cc567d43-5426-4c1b-9d80-5ac1c11f0ba7" -> "a030b434-e396-4949-a751-5243d296a2d2" [label="joined>in"];
+    "cc567d43-5426-4c1b-9d80-5ac1c11f0ba7" -> "5e72f9f8-6175-424f-8aa1-afd1d9a99077" [label="missed>in"];
+}

@@ -1,0 +1,36 @@
+digraph {
+    subgraph "cluster_a9e2753b-4eeb-4d34-b87d-23ec9683cc7a" {
+        label = "(source)";
+        "a5ff57bb-57f0-4c3f-8e19-75b952165586" [shape=invhouse, label="modelA"];
+        "2659af1c-c145-4b27-8622-568b4c356a6f" [shape=invhouse, label="modelB"];
+    }
+    subgraph "cluster_57a2060e-cb6e-4ea8-9cec-cddf5d05ac04" {
+        label = "(sink)";
+        "f22aa7ff-4c22-4e05-8d43-b3604bcbdbcc" [shape=invhouse, label="joined"];
+    }
+    subgraph "cluster_c3bce8b6-050f-4ad9-b008-2c26f51e3f91" {
+        label = "stage0001";
+        style = bold;
+        "6c6a141f-8239-4777-87f7-b8fe56710ca2" [shape=box, label="@MasterJoin\nCmsOperator.joined"];
+        "e5cdf005-7860-4686-b5af-6415f3e27a0a" [shape=box, label="@Restructure\nrestructure"];
+        "1ca09606-5096-4482-97f3-99622c1a9383" [shape=box, label="@MasterBranch\nCmsOperator.branchWithJoin"];
+        "89935595-d619-48b1-a40f-45fcb774936e" [shape=box, label="@Restructure\nrestructure"];
+        "3a50826c-efc2-4c63-9afc-41bde9108f4b" [shape=box, label="@Project\nproject"];
+        "7dea5455-5567-4d00-8a42-a0345b65cd10" [shape=point];
+        "9274a9a5-cfa4-44ef-980a-65c6d2bd5f7d" [shape=point];
+        "c51ed011-d5a0-4eba-9456-9afaec6cdfdf" [shape=point];
+    }
+    "2659af1c-c145-4b27-8622-568b4c356a6f" -> "9274a9a5-cfa4-44ef-980a-65c6d2bd5f7d" [label="port>in"];
+    "a5ff57bb-57f0-4c3f-8e19-75b952165586" -> "7dea5455-5567-4d00-8a42-a0345b65cd10" [label="port>in"];
+    "a5ff57bb-57f0-4c3f-8e19-75b952165586" -> "c51ed011-d5a0-4eba-9456-9afaec6cdfdf" [label="port>in"];
+    "3a50826c-efc2-4c63-9afc-41bde9108f4b" -> "f22aa7ff-4c22-4e05-8d43-b3604bcbdbcc" [label="out>port"];
+    "89935595-d619-48b1-a40f-45fcb774936e" -> "f22aa7ff-4c22-4e05-8d43-b3604bcbdbcc" [label="out>port"];
+    "e5cdf005-7860-4686-b5af-6415f3e27a0a" -> "f22aa7ff-4c22-4e05-8d43-b3604bcbdbcc" [label="out>port"];
+    "6c6a141f-8239-4777-87f7-b8fe56710ca2" -> "3a50826c-efc2-4c63-9afc-41bde9108f4b" [label="joined>in"];
+    "6c6a141f-8239-4777-87f7-b8fe56710ca2" -> "e5cdf005-7860-4686-b5af-6415f3e27a0a" [label="missed>in"];
+    "1ca09606-5096-4482-97f3-99622c1a9383" -> "89935595-d619-48b1-a40f-45fcb774936e" [label="bmissed>in"];
+    "c51ed011-d5a0-4eba-9456-9afaec6cdfdf" -> "1ca09606-5096-4482-97f3-99622c1a9383" [label="out>modelA"];
+    "7dea5455-5567-4d00-8a42-a0345b65cd10" -> "6c6a141f-8239-4777-87f7-b8fe56710ca2" [label="out>modelA"];
+    "9274a9a5-cfa4-44ef-980a-65c6d2bd5f7d" -> "6c6a141f-8239-4777-87f7-b8fe56710ca2" [label="out>modelB"];
+    "9274a9a5-cfa4-44ef-980a-65c6d2bd5f7d" -> "1ca09606-5096-4482-97f3-99622c1a9383" [label="out>modelB"];
+}

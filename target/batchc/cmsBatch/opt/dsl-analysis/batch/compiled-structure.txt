@@ -1,0 +1,29 @@
+batch: cmsBatch
+flow: CmsJobFlow
+    input:
+        modelA (ironpeace.jobflow.io.ModelAFromCsv)
+        modelB (ironpeace.jobflow.io.ModelBFromCsv)
+    output:
+        joined (ironpeace.jobflow.io.JoinedModelToCsv)
+    stages:
+        prologue:
+        main:
+            stage: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.StageClient
+                mapper: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.StageMapper1
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.MapFragment1
+                mapper: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.StageMapper2
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.MapFragment3
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.MapFragment2
+                reducer: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.StageReducer
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.ReduceFragment5
+                        operator: ironpeace.operator.CmsOperator#joined([class ironpeace.modelgen.dmdl.model.ModelA, class ironpeace.modelgen.dmdl.model.ModelB])[]
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.MapFragment6
+                        operator: com.asakusafw.vocabulary.flow.util.CoreOperatorFactory$Restructure#toString([])[]
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.MapFragment4
+                        operator: com.asakusafw.vocabulary.flow.util.CoreOperatorFactory$Project#toString([])[]
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.ReduceFragment7
+                        operator: ironpeace.operator.CmsOperator#branchWithJoin([class ironpeace.modelgen.dmdl.model.ModelB, class ironpeace.modelgen.dmdl.model.ModelA])[]
+                    fragment: ironpeace.batchapp.cmsBatch.cmsJobFlow.stage0001.MapFragment8
+                        operator: com.asakusafw.vocabulary.flow.util.CoreOperatorFactory$Restructure#toString([])[]
+        epilogue:
+            stage: ironpeace.batchapp.cmsBatch.cmsJobFlow.directio.epilogue.StageClient

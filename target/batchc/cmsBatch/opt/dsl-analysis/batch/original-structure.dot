@@ -1,0 +1,10 @@
+digraph {
+    rankdir = LR;
+    "7732a783-7aa0-4793-95cb-56345077181c" [shape=box, label="Batch\nCmsBatch"];
+    "260cb75c-12b2-4c49-b9f2-dda08b76183b" [shape=box, label="JobFlow\nCmsJobFlow"];
+    "e17a42c7-2fe9-4c8f-b66a-98196402332c" [shape=box, label="MasterBranch\nCmsOperator#branchWithJoin"];
+    "260cb75c-12b2-4c49-b9f2-dda08b76183b" -> "e17a42c7-2fe9-4c8f-b66a-98196402332c";
+    "828c4cc3-ea6c-4003-95ce-49f72931d2a4" [shape=box, label="MasterJoin\nCmsOperator#joined"];
+    "260cb75c-12b2-4c49-b9f2-dda08b76183b" -> "828c4cc3-ea6c-4003-95ce-49f72931d2a4";
+    "7732a783-7aa0-4793-95cb-56345077181c" -> "260cb75c-12b2-4c49-b9f2-dda08b76183b";
+}
